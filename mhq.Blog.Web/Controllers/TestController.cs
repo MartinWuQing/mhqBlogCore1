@@ -12,7 +12,7 @@ namespace mhq.Blog.Web.Controllers
         {
             ///1、测试增
             string str = "";
-            mhq.Blog.DAL.CategroyDAL cadal = new DAL.CategroyDAL();
+            mhq.Blog.DAL.CategoryDAL cadal = new DAL.CategoryDAL();
             str += "新增的ID值：" + cadal.insert(new Model.Category() { caname = "caname", bh = "01", pbh = "01", remark = "01" }) + "<hr />";
 
             //2、测试删

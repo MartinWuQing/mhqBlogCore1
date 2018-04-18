@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using mhq.Blog.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace mhq.Blog.DAL
 {
-     public  class CategroyDAL
+     public  class CategoryDAL
     {
         /// <summary>
         /// 增加方法
@@ -42,6 +43,21 @@ namespace mhq.Blog.DAL
                 return false;
             }
         }
+        /// <summary>
+        /// 根据分类编号取实体类
+        /// </summary>
+        /// <param name="caBh"></param>
+        /// <returns></returns>
+        public Category GetModelByBh(string caBh)
+        {
+            using (var connection = ConnectionFactory.GetOpenConnection())
+            {
+                var m = connection.Query<Model.Category>("select * from category where bh=@bh",
+                  new { bh=caBh }).First();
+                return m;
+            }
+        }
+
         /// <summary>
         /// 查询
         /// </summary>

@@ -1,6 +1,8 @@
-﻿<blockquote class="layui-elem-quote">文章管理</blockquote>
+﻿@model List<mhq.Blog.Model.Blog>
+
+<blockquote class="layui-elem-quote">文章管理</blockquote>
 <div style="padding:10px;">
-   <div>
+    <div>
         <a class="layui-btn" href="~/Admin/Blog/Add">
             <i class="layui-icon">&#xe61f;</i> 添加
         </a>
@@ -17,22 +19,27 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>2018-1-12 12:15</td>
-                <td>Hello World</td>
-                <td>随笔</td>
-                <td>512</td>
-                <td>
-                    <a style="margin-right:20px" href="~/Admin/Blog/Add/1">
-                        <i class="layui-icon">&#xe642;</i>
-                        编辑
-                    </a>
-                    <a href="/Admin/Blog/Del">
-                        <i class="layui-icon">&#xe640;</i>
-                        删除
-                    </a>
-                </td>
-            </tr>
+            @foreach (var blog in Model)
+            {
+                <tr>
+                    <td>@blog.createdate.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@blog.title</td>
+                    <td>@blog.caname</td>
+                    <td>@blog.visitnum</td>
+                    <td>
+                        <a style="margin-right:20px" href="~/Admin/Blog/Add/@blog.id">
+                            <i class="layui-icon">&#xe642;</i>
+                            编辑
+                        </a>
+                        <a href="/Admin/Blog/Del/@blog.id" onclick="return confirm("sdfs")" >
+                            <i class="layui-icon">&#xe640;</i>
+                            删除
+                        </a>
+                    </td>
+                </tr>
+            }
+
+
         </tbody>
 
     </table>
