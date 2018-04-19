@@ -16,12 +16,12 @@ namespace mhq.Blog.Web.Controllers
             str += "新增的ID值：" + cadal.insert(new Model.Category() { caname = "caname", bh = "01", pbh = "01", remark = "01" }) + "<hr />";
 
             //2、测试删
-            bool b = cadal.Delete(7);
+            bool b = cadal.Delete(3);
             str += "删除ID=7的结果：" + b + "<hr />";
 
             //3、测试修改
             ////先取出数据
-            Model.Category ca = cadal.Getmodel(8);
+            Model.Category ca = cadal.Getmodel(3);
             if (ca != null)
             {
                 ca.caname = "新修改的名称" + DateTime.Now;

@@ -14,7 +14,7 @@ namespace mhq.Blog.Web.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            List<Model.Blog> list = dal.GetList("");
+            List<Model.Blog>  list = dal.GetList("  1=1 order by sort asc,id desc");
             return View(list);
         }
         public IActionResult Add(int ? id)
@@ -28,6 +28,7 @@ namespace mhq.Blog.Web.Areas.Admin.Controllers
             }
             return View(m);      
         }
+
         [HttpPost]
         public IActionResult Add(Model.Blog m)
         {
@@ -53,10 +54,19 @@ namespace mhq.Blog.Web.Areas.Admin.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [HttpPost]
         public IActionResult Del(int id)
         {
-            dal.Delete(id);
-            return Redirect("/Admin/Blog/Index");
+          bool b=  dal.Delete(id);
+            if(b==true)
+            {
+                return Content("删除成功！");
+            }
+            else
+            {
+                return Content("删除失败，请联系管理员！");
+
+            }
         }
 
 

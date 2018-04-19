@@ -65,10 +65,10 @@ namespace mhq.Blog.DAL
             // Dapper – Simple List
             using (var connection = ConnectionFactory.GetOpenConnection())
             {
-                string sql = "select * from Blog";
+                string sql = "select * from blog ";
                 if (!string.IsNullOrEmpty(cond))
                 {
-                    sql += $"where{cond}";
+                    sql=sql+$" where{cond}";
                 }
                 var list = connection.Query<Model.Blog>(sql).ToList();
                 return list;

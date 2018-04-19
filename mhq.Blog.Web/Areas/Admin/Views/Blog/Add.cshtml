@@ -16,17 +16,17 @@
             <div class="layui-input-block">
                 <select name="CaBh" style="/*  display:none; */">
                     @foreach (mhq.Blog.Model.Category ca in ViewBag.calist)
+                {
+                    if (ca.bh == Model.cabh)
                     {
-                        if (ca.bh == Model.cabh)
-                        {
-                            <option selected="selected" value="@ca.bh">@ca.caname</option>
-                        }
-                        else
-                        {
-                            <option value="@ca.bh">@ca.caname</option>
-                        }
+                        <option selected="selected" value="@ca.bh">@ca.caname</option>
+                }
+                else
+                {
+                    <option value="@ca.bh">@ca.caname</option>
+            }
 
-                    }
+        }
                 </select>
             </div>
         </div>
@@ -37,11 +37,19 @@
                 @Html.TextAreaFor(a => a.body, new { placeholder = "请输入内容", @class = "layui-textarea" })
             </div>
         </div>
+        
+        <div class="layui-form-item">
+            <label class="layui-form-label">排序号</label>
+            <div class="layui-input-inline">
+                @Html.TextBoxFor(a => a.sort, new { placeholder = "请输入排序号", @class = "layui-input" })
+            </div>
+            <div class="layui-form-mid layui-word-aux">只能是整数，前台从小到大排序</div>
+        </div>
 
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn" type="submit">立即提交</button>
-
+                @Html.AntiForgeryToken()
             </div>
         </div>
 

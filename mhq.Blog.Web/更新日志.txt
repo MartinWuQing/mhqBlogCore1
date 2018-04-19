@@ -11,3 +11,8 @@ gist-github
 2018.4.18
 后台博文的  增删改 
 一个小bug 改了一个小时，DAL中的 “，”多余了。
+
+2018.4.19
+1.使用js和layui美化删除提示！
+2.排序号的添加(bug解决)
+3.防止CSRF攻击 增加button后面加入  @Html.AntiForgeryToken()

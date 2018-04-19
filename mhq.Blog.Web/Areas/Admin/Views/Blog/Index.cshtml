@@ -15,32 +15,52 @@
                 <th>boke标题</th>
                 <th>所属分类</th>
                 <th>访问量</th>
+                <th>排序号</th>
                 <th>管理</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var blog in Model)
             {
-                <tr>
-                    <td>@blog.createdate.ToString("yyyy-MM-dd HH:mm")</td>
-                    <td>@blog.title</td>
-                    <td>@blog.caname</td>
-                    <td>@blog.visitnum</td>
-                    <td>
-                        <a style="margin-right:20px" href="~/Admin/Blog/Add/@blog.id">
-                            <i class="layui-icon">&#xe642;</i>
-                            编辑
-                        </a>
-                        <a href="/Admin/Blog/Del/@blog.id" onclick="return confirm("sdfs")" >
-                            <i class="layui-icon">&#xe640;</i>
-                            删除
-                        </a>
-                    </td>
-                </tr>
+            <tr>
+                <td>@blog.createdate.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@blog.title</td>
+                <td>@blog.caname</td>
+                <td>@blog.visitnum</td>
+                <td>@blog.sort</td>
+                <td>
+                    <a style="margin-right:20px" href="~/Admin/Blog/Add/@blog.id">
+                        <i class="layui-icon">&#xe642;</i>
+                        编辑
+                    </a>
+                    <a href="javascript:void()0;" onclick="del(@blog.id)">
+                        <i class="layui-icon">&#xe640;</i>
+                        删除
+                    </a>
+                </td>
+            </tr>
             }
-
-
         </tbody>
 
     </table>
 </div>
+
+<script>
+    /* 删除*/
+    function del(id) {
+        layui.use('layer', function () {
+            var layer = layui.layer;
+            var $ = layui.jquery;
+            layer.confirm("是否确认删除？", function () { 
+
+                var url = "/Admin/Blog/Del/" + id;
+                $.post(url, function (data) {
+                    layer.alert(data, function () { location.reload(); });
+
+                })
+
+            })
+        })
+    }
+
+</script>

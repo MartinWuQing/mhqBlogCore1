@@ -71,7 +71,7 @@ namespace mhq.Blog.DAL
                 string sql = "select * from Category";
                 if(!string .IsNullOrEmpty(cond))
                 {
-                    sql += $"where{cond}";
+                    sql=sql+$"where{cond}";
                 }
                 var list = connection.Query<Model.Category>(sql).ToList();
                 return list;
